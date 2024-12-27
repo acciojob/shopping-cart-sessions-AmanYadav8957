@@ -42,10 +42,12 @@ function getCart() {
 // Add item to cart  
 function addToCart(productId) {  
     const product = products.find(p => p.id === productId);  
-    const cart = getCart();  
-    cart.push(product);  
-    sessionStorage.setItem('cart', JSON.stringify(cart));  
-    renderCart();  
+    if (product) {  
+        const cart = getCart(); // Get current cart from session storage  
+        cart.push(product); // Add the new product  
+        sessionStorage.setItem('cart', JSON.stringify(cart)); // Update session storage  
+        renderCart(); // Update the UI  
+    }  
 }  
 
 // Clear cart  
